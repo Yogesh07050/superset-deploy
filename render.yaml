@@ -7,6 +7,13 @@ services:
     dockerfilePath: Dockerfile
     envVars:
       - key: SUPERSET_SECRET_KEY
-        value: 2326ae05c32a515ebff42f0c18aa2576a7f2844610daa5a57479195bc540a218
+        value: "2326ae05c32a515ebff42f0c18aa2576a7f2844610daa5a57479195bc540a218"
+      - key: SUPERSET_CONFIG_PATH
+        value: "/app/superset_config.py"
     autoDeploy: true
     plan: free
+    healthCheckPath: /health
+    disk:
+      name: data
+      mountPath: /app/superset_home
+      sizeGB: 1
