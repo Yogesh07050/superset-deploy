@@ -2,7 +2,7 @@
 FROM apache/superset:latest
 
 # Set environment variables
-ENV SUPERSET_SECRET_KEY='2uji5hc3ybR-gC482DIbP5cHqWeIHWiliTQI_i5ytglf6vFXS6JghoajXf8JD9zHfLNEuT49u4qnmBrpet-YBg'
+ENV SUPERSET_SECRET_KEY='2326ae05c32a515ebff42f0c18aa2576a7f2844610daa5a57479195bc540a218'
 ENV SUPERSET_CONFIG_PATH='/app/superset_config.py'
 
 # Initialize the database
