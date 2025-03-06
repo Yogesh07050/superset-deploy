@@ -1,0 +1,12 @@
+services:
+  - name: superset
+    type: web
+    env: docker
+    repo: https://github.com/Yogesh07050/superset-deploy
+    branch: main
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: SUPERSET_SECRET_KEY
+        value: 2326ae05c32a515ebff42f0c18aa2576a7f2844610daa5a57479195bc540a218
+    autoDeploy: true
+    plan: free
