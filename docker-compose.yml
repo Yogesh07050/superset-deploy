@@ -6,7 +6,7 @@ services:
     ports:
       - "8088:8088"
     environment:
-      - SUPERSET_SECRET_KEY=your_secret_key
+      - SUPERSET_SECRET_KEY=2326ae05c32a515ebff42f0c18aa2576a7f2844610daa5a57479195bc540a218
     volumes:
       - superset_home:/app/superset_home
     restart: always
