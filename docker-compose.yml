@@ -1,4 +1,5 @@
 version: '3.1'
+
 services:
   superset:
     image: apache/superset:latest
@@ -7,9 +8,32 @@ services:
       - "8088:8088"
     environment:
       - SUPERSET_SECRET_KEY=2326ae05c32a515ebff42f0c18aa2576a7f2844610daa5a57479195bc540a218
+      - SUPERSET_CONFIG_PATH=/app/superset_config.py
     volumes:
       - superset_home:/app/superset_home
+    depends_on:
+      - db
+    restart: always
+    command: >
+      /bin/bash -c "
+      superset db upgrade &&
+      superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@superset.com --password admin &&
+      superset load_examples &&
+      superset init &&
+      superset run -p 8088 --host 0.0.0.0 --with-threads --reload --debugger
+      "
+
+  db:
+    image: postgres:13
+    container_name: superset_db
+    environment:
+      POSTGRES_USER: superset
+      POSTGRES_PASSWORD: superset
+      POSTGRES_DB: superset
+    volumes:
+      - db_data:/var/lib/postgresql/data
     restart: always
 
 volumes:
   superset_home:
+  db_data:
